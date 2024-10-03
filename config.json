@@ -1,0 +1,29 @@
+{
+  "default_host_type": "server",
+  "host_type": {
+    "server": {
+      "label": "{HOSTNAME}\n({HOST.IP})",
+      "iconid_off": "150",
+      "iconid_on": 0,
+      "iconid_disabled": 0,
+      "iconid_maintenance": 0,
+      "elementtype": 0
+    },
+    "switch": {
+      "label": "{HOSTNAME}\n({HOST.IP})",
+      "iconid_off": "155",
+      "iconid_on": 0,
+      "iconid_disabled": 0,
+      "iconid_maintenance": 0,
+      "elementtype": 0
+    },
+    "router": {
+      "label": "{HOSTNAME}\n({HOST.IP})",
+      "iconid_off": "125",
+      "iconid_on": 0,
+      "iconid_disabled": 0,
+      "iconid_maintenance": 0,
+      "elementtype": 0
+    }
+  }
+}
