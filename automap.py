@@ -105,6 +105,10 @@ def main(
                 help="zabbix folder (where the api_jsonrpc.php file resides, normally /zabbix or /)",
             ),
         ] = "/zabbix",
+        zabbix_api: Annotated[
+            str,
+            typer.Option("--zabbix_api", "-a", help="zabbix api new or old"),
+        ] = "new",
         map_layout: Annotated[
             type_layout,
             typer.Option("--map_layout", "-L", help="Map layout to use"),
@@ -155,6 +159,7 @@ def main(
         map_name=zabbix_map_name,
         map_layout=map_layout.value,
         host_group_name=zabbix_host_group_name,
+        zabbix_api=zabbix_api,
     )
 
     logger.debug(f"{automaper.graph.graph.vs.attribute_names()}")

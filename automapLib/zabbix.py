@@ -14,6 +14,7 @@ class Zabbix:
     zabbix_port: int = 80
     zabbix_scheme: str = "http"
     zabbix_folder: str = "/zabbix"
+    zabbix_api: str = "new"
     api: ZabbixAPI = None
     logger: logging = logging.getLogger("Zabbix")
 
@@ -23,7 +24,7 @@ class Zabbix:
 
     def create_api(self):
         self.logger.info(f"create zabbix api")
-        self.api = ZabbixAPI(url=self.zabbix_url, token=self.zabbix_token)
+        self.api = ZabbixAPI(url=self.zabbix_url, token=self.zabbix_token, skip_version_check=True)
 
     def get_hosts_in_host_group_name(self, host_group_name) -> list[Host]:
         groupid = self.get_host_group_from_name(host_group_name)

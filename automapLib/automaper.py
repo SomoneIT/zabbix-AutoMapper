@@ -28,6 +28,7 @@ class Automaper:
             zabbix_port,
             zabbix_scheme,
             zabbix_folder,
+            zabbix_api,
             host_group_name,
             map_name,
             map_layout,
@@ -43,6 +44,7 @@ class Automaper:
             zabbix_port=zabbix_port,
             zabbix_scheme=zabbix_scheme,
             zabbix_folder=zabbix_folder,
+            zabbix_api=zabbix_api,
         )
         self.zabbix.create_api()
         self.host_group_name = host_group_name
@@ -100,16 +102,16 @@ class Automaper:
         logging.debug(f"list host : {list_host}")
         for edge in self.graph.get_edges():
             logging.debug(f"{edge}")
-            list_link.append(
-                {
-                    "linkid": edge["name"],
+            link = {
                     "label": edge["label"],
                     "selementid1": edge["host1"],
                     "selementid2": edge["host2"],
                     "color": edge["color"],
                     "drawtype": edge["draw_type"],
                 }
-            )
+            if self.zabbix.zabbix_api == "old":
+                link["linkid"] = edge["name"]
+            list_link.append(link)
         logging.debug(f"list link : {list_link}")
 
         self.zabbix.update_map(
